@@ -30,5 +30,4 @@ sequelize.authenticate().then(function () {
     console.log(err)
 });
 
-
 module.exports = sequelize
