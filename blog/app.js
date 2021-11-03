@@ -1,7 +1,7 @@
 const express = require('express');
-const routes = require('./routes');
-let cors = require('cors');
 const app = express();
+let cors = require('cors');
+require('./config/db');
 
 // CORS
 const corsOptions = {
@@ -12,11 +12,16 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Parser
-app.use(express.urlenconded({ extended: true}));
+app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
-// Rotas
-app.use(routes);
+app.use(express.static('public'));
+
+app.set('view engine', 'ejs');
+
+app.get("./", (req, res) => {
+    res.render("index");
+});
 
 
 // Error
